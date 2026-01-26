@@ -73,6 +73,14 @@
 #endif
 #define ICMP_DATA_SIZE 28
 
+/* ICMP Message Type */
+
+#define ICMP_DESTINATION_NET_UNREACHABLE 1
+#define ICMP_DESTINATION_HOST_UNREACHABLE 2
+#define ICMP_PORT_UNREACHABLE 3
+#define ICMP_TIME_EXCEEDED 4
+
+
 struct sr_rip_pkt {
   uint8_t command;
   uint8_t version;

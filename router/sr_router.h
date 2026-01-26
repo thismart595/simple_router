@@ -71,6 +71,19 @@ int sr_read_from_server(struct sr_instance* );
 /* -- sr_router.c -- */
 void sr_init(struct sr_instance* );
 void sr_handlepacket(struct sr_instance* , uint8_t * , unsigned int , char* );
+int send_arp_request(struct sr_instance* sr, uint32_t target_ip_adr);
+int compare_two_name(char* a, char* b,int len);
+int send_icmp_error_message(struct sr_instance* sr,
+                            char* interface_name,
+                            uint16_t ip_id,
+                            uint8_t* payload_from_error_datagram_buffer, /* first 28 bytes */
+                            uint32_t dest_ip_adr,
+                            uint32_t src_ip_adr,
+                            uint8_t  ether_dhost[ETHER_ADDR_LEN],   /* destination ethernet address */
+                            uint8_t  ether_shost[ETHER_ADDR_LEN],  /* source ethernet address */
+                            int icmp_error_msg_type /* ICMP Error Message Type, defined in sr_router.h */
+);
+void handle_arpreq(struct sr_instance *sr, struct sr_arpreq* req);
 
 /* -- sr_if.c -- */
 void sr_add_interface(struct sr_instance* , const char* );
